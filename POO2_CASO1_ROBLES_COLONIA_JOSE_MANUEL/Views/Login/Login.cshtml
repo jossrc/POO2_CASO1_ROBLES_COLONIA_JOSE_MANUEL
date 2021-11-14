@@ -1,0 +1,63 @@
+﻿@model POO2_CASO1_ROBLES_COLONIA_JOSE_MANUEL.Models.Login
+
+@{
+    ViewBag.Title = "Iniciar Sesión";
+}
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+        <div class="panel">
+            @using (Html.BeginForm()) 
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="panel-heading text-center">
+                    <h4>Iniciar Sesión</h4>
+                    <hr />
+                </div>
+
+                <div class="panel-body col-md-offset-3">
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Username,new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(model => model.Password, new {  @class = "form-control"  })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Aceptar" class="btn btn-success" />
+                                <a class="btn btn-warning" href="#">Cancelar</a>
+                            </div>
+                        </div>
+                        
+                        @{
+                            if (!string.IsNullOrEmpty(ViewBag.MESSAGE))
+                            {
+                                <div class="alert alert-danger j-alert">@ViewBag.MESSAGE</div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+  </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

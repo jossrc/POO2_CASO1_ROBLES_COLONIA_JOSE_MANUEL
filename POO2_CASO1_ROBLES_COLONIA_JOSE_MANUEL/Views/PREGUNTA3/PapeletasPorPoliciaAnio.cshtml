@@ -1,0 +1,68 @@
+﻿@model IEnumerable<POO2_CASO1_ROBLES_COLONIA_JOSE_MANUEL.Models.usp_papeletas_por_policia_anio>
+
+@{
+    ViewBag.Title = "PapeletasPorPoliciaAnio";
+}
+
+<h2>Papeletas por policía y año</h2>
+
+@using (Html.BeginForm())
+{
+<p>
+    Seleccione policía : @Html.DropDownList("codipol", (SelectList)ViewBag.POLICIAS, new { @class = "form-control", @style = "display: inline-block" })
+
+    <br /> <br />
+    
+    Ingrese un año : <input type="text" name="anio" value="@ViewBag.ANIO" class="form-control" style="display: inline-block !important;" />
+
+    <input type="submit" value="Consultar" class="btn btn-default" />
+</p>
+}
+
+
+<p>
+    @Html.ActionLink("Ir a lista de papeletas por año ", "PapeletasPorAnio", "PREGUNTA2")
+</p>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NROPAP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PAPFECHA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NOMPRO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NROPLA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CODINF)
+            </th>
+        </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NROPAP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PAPFECHA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOMPRO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NROPLA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CODINF)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
